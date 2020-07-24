@@ -1,0 +1,16 @@
+# Version
+version: "3"
+
+# services: service is `app` and build service is current directory.
+services:
+  app:
+    build:
+      context: .
+    ports: 
+      - "8000:800"
+    volumes: 
+      # automatically restart docker on change, maps local folder (change) to docker folder (to update)
+      - ./app:/app
+    # Run command with shell
+    command: >
+      sh -C "python manage.py runserver 0.0.0.0:8000"
