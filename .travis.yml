@@ -1,0 +1,18 @@
+# foreach CHANGE, travis will spin up python server, make docker available, install docker-compose and run our script.
+# if script fails then it'll email us
+
+# Language expected
+language : python
+python:
+    - "3.6"
+
+
+services:
+    - docker
+
+# executes before anything runs
+before_script: pip install docker-compose
+
+
+script:
+    - docker-compose run app sh -c "python manage.py test && flake8"
