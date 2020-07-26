@@ -4,7 +4,7 @@ FROM python:3.7-alpine
 
 
 # Maintainer line
-Maintainer ThisIsMe
+MAINTAINER ThisIsMe
 
 # ENV to run python unbuffered, instead print all directly. recommended
 ENV PYTHONUNBUFFERED 1
