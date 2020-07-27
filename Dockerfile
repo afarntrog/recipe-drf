@@ -11,8 +11,19 @@ ENV PYTHONUNBUFFERED 1
 
 # Dependencies, copy from local repo to docker image
 COPY ./requirements.txt /requirements.txt
+
+# Postgres client
+RUN apk add --update --no-cache postgresql-client
+
+
+
+# Install temp files
+RUN apk add --update --no-cache --virtual .tmp-build-deps gcc libc-dev linux-headers postgresql-dev
+
 RUN pip install -r /requirements.txt
 
+# remove the temp installs
+RUN apk del .tmp-build-deps
 
 # Create empty folder on our docker image  titled: app
 RUN mkdir /app
